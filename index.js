@@ -25,6 +25,22 @@ app.get('/api/users', (req, res) => {
   });
 });
 
+app.post('/api/users', (req, res) => {
+  const { email, password, name } = req.body;
+  connection.query(
+    'INSERT INTO user(email, password, name) VALUES(?, ?, ?)',
+    [email, password, name],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Error saving a User');
+      } else {
+        res.status(200).send('Successfully saved');
+      }
+    }
+  );
+});
+
 app.listen(process.env.PORT, (err) => {
   if (err) {
     throw new Error('Something bad happened...');
