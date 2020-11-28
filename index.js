@@ -121,6 +121,7 @@ app.put('/api/users/:id', userValidationMiddlewares, (req, res) => {
           return res.status(200).set('Location', location).json(user);
         }
       );
+
     }
   );
 });
